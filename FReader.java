@@ -2,7 +2,7 @@ package combatlogparser;
 
 import java.io.*;
 import java.util.*;
-import combatlogparser.events.LineParser;
+import combatlogparser.events.*;
 //import org.json.simple.*;
 
 public class FReader {
@@ -15,9 +15,12 @@ public class FReader {
 				if (s != null) {
 					LineParser lp = new LineParser();
 					lp.parse(s);
-					System.out.println(lp.getTimeDate());
+					BaseEvent be = new BaseEvent();
 					for (String ss : lp.getValues())
-        				System.out.print(ss + " ");
+						System.out.println(ss);
+					be.parse(lp.getTimeDate(), lp.getValues());
+					System.out.println(be.toString());
+        			System.exit(1);
 					//System.out.println(i + " " + s.replace(System.getProperty("line.separator"), ""));
 				}
 			}
