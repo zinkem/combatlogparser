@@ -11,10 +11,8 @@ public class RangeBaseEvent extends BaseEvent {
 
 	public int parse(String timeDate, String values[]) {
 		int index = super.parse(timeDate, values);
-		if (index < 0 | values.length < index + 3) {
-			System.out.println("RBE Error " + index);
+		if (index < 0 | values.length < index + 3)
 			return -1;
-		}
 
 		setSpellID(Integer.valueOf(values[index++]));
 		setSpellName(values[index++]);

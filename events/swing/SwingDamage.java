@@ -17,7 +17,7 @@ public class SwingDamage extends BaseEvent {
 
 	public int parse(String timeDate, String[] values) {
 		int index = super.parse(timeDate, values);
-		if (index < 0 || index < index + 9) {
+		if (index < 0 || values.length < index + 9) {
 			return -1;
 		}
 

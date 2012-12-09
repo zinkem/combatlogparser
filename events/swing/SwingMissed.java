@@ -9,9 +9,11 @@ public class SwingMissed extends BaseEvent {
 
 	public int parse(String timeDate, String[] values) {
 		int index = super.parse(timeDate, values);
-		if (index < 0 | index < index + 1)
+		if (index < 0 || values.length < index + 1)
 			return -1;
 
+		setMissType(values[index++]);
+		
 		return index;
 	}
 
