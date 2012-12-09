@@ -44,7 +44,7 @@ public interface Constants {
     public static final int POWER_TYPE_RUNES = 5;
     public static final int POWER_TYPE_RUNIC_POWER = 6;
     public static final int POWER_TYPE_SOUL_SHARD = 7;
-    public static final int POWER_TYPE_ECLIPSE_ENERGY = 8; //Solar > 0 && Lunar > 0
+    public static final int POWER_TYPE_ECLIPSE_ENERGY = 8; //Solar > 0 && Lunar < 0
     public static final int POWER_TYPE_HOLY_POWER = 9;
     public static final int POWER_TYPE_ALTERNATE_POWER = 10;
     public static final int POWER_TYPE_DARK_FORCE = 11;
