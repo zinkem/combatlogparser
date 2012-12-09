@@ -34,7 +34,8 @@ public class LineParser {
 		}
 
 		timeDate = new String(line.substring(startIndex, endIndex));
-		eventValues = new String(line.substring(i).trim()).replace("\"","").split(",");
+		//eventValues = new String(line.substring(i).trim()).replace("\"","").replace("Invoke Xuen, the White Tiger", "Invoke Xuen the White Tiger").split(",");
+		eventValues = new String(line.substring(i).trim()).split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 	}
 
 	public String getTimeDate() {

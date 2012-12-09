@@ -6,7 +6,7 @@ public class SpellStolen extends SpellBaseEvent {
 	private int extraSpellID;
 	private String extraSpellName;
 	private int extraSpellSchool;
-	private int auraType;
+	private String auraType;
 
 	public SpellStolen() {}
 
@@ -18,7 +18,7 @@ public class SpellStolen extends SpellBaseEvent {
 		setExtraSpellID(Integer.valueOf(values[index++]));
 		setExtraSpellName(values[index++]);
 		setExtraSpellSchool((int)longParse(values[index++]));
-		setAuraType((int)longParse(values[index++]));
+		setAuraType(values[index++]);
 
 		return index;
 	}
@@ -32,8 +32,8 @@ public class SpellStolen extends SpellBaseEvent {
 	public void setExtraSpellSchool(int i) { this.extraSpellSchool = i; }
 	public int getExtraSpellSchool() { return this.extraSpellSchool; }
 
-	public void setAuraType(int i) { this.auraType = i; }
-	public int getAuraType() { return this.auraType; }
+	public void setAuraType(String s) { this.auraType = s; }
+	public String getAuraType() { return this.auraType; }
 
 	@Override
 	public String toString() {

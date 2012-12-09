@@ -5,7 +5,9 @@ import java.util.*;
 import combatlogparser.events.*;
 import combatlogparser.events.swing.*;
 import combatlogparser.events.range.*;
+import combatlogparser.events.environmental.*;
 import combatlogparser.events.spell.*;
+import combatlogparser.events.spell.aura.*;
 import combatlogparser.events.spell.cast.*;
 import combatlogparser.events.spell.heal.*;
 import combatlogparser.events.spell.periodic.*;
@@ -15,38 +17,49 @@ public class FReader {
 	private static HashMap<String, Class> classMap;
 
 	public static void main(String[] args) {
-		File testerLogFile = new File("Logs/CombatLog_01.txt");
+		File testerLogFile = new File("Logs/CombatLog_02.txt");
 		createClassHashMap();
+		long sT = System.currentTimeMillis();
+		long lines = 0;
 		try {
 			BufferedReader br = endOfFile(testerLogFile);
-			while (true) {
-				String s = br.readLine();
-				if (s != null) {
+			//while (true) {
+				String s;// = br.readLine();
+				while ((s = br.readLine()) != null) {
+				//if (s != null) {
 					LineParser lp = new LineParser();
 					lp.parse(s);
+					System.out.println(s);
 					Class c = getEventClass(lp.getValues());
 					if (c != null) {
 						BaseEvent be = (BaseEvent)c.newInstance();
 						if (be.parse(lp.getTimeDate(), lp.getValues()) >= 1)
 							System.out.println(be.toString());
-						else
+						else {
+							long fT = (System.currentTimeMillis() - sT);
+							System.out.println(fT + " " + lines);
 							System.exit(1);
+						}
 					}
+					++lines;
         			//System.exit(1);
 					//System.out.println(i + " " + s.replace(System.getProperty("line.separator"), ""));
 				}
-			}
+				br = null;
+			//}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
+		long fT = (System.currentTimeMillis() - sT);
+		System.out.println(fT + "ms " + lines + " lines");
 	}
 
 	public static BufferedReader endOfFile(File f) {
 		try {
 			long fileLength = f.length() - 1;
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8"));
-			//br.skip(fileLength);
+			//br.skip(200000);
 
 			return br;
 		} catch (Exception e) {
@@ -86,11 +99,26 @@ public class FReader {
 		classMap.put("SPELL_LEECH", SpellLeech.class);
 		classMap.put("SPELL_MISSED", SpellMissed.class);
 		classMap.put("SPELL_STOLEN", SpellStolen.class);
+		classMap.put("SPELL_EXTRA_ATTACKS", SpellExtraAttacks.class);
+		classMap.put("SPELL_INSTAKILL", SpellInstaKill.class);
+		classMap.put("SPELL_CREATE", SpellCreate.class);
+		classMap.put("SPELL_SUMMON", SpellSummon.class);
+		classMap.put("SPELL_RESURRECT", SpellResurrect.class);
+		//Spell Aura
+		classMap.put("SPELL_AURA_APPLIED", SpellAuraApplied.class);
+		classMap.put("SPELL_AURA_REMOVED", SpellAuraRemoved.class);
+		classMap.put("SPELL_AURA_APPLIED_DOSE", SpellAuraAppliedDose.class);
+		classMap.put("SPELL_AURA_REMOVED_DOSE", SpellAuraRemovedDose.class);
+		classMap.put("SPELL_AURA_REFRESH", SpellAuraRefresh.class);
+		classMap.put("SPELL_AURA_BROKEN", SpellAuraBroken.class);
+		classMap.put("SPELL_AURA_BROKEN_SPELL", SpellAuraBrokenSpell.class);
 		//Spell Periodic
 		classMap.put("SPELL_PERIODIC_DAMAGE", SpellPeriodicDamage.class);
 		classMap.put("SPELL_PERIODIC_DRAIN", SpellPeriodicDrain.class);
 		classMap.put("SPELL_PERIODIC_ENERGIZE", SpellPeriodicEnergize.class);
 		classMap.put("SPELL_PERIODIC_LEECH", SpellPeriodicLeech.class);
 		classMap.put("SPELL_PERIODIC_MISSED", SpellPeriodicMissed.class);
+		//Environmental
+		classMap.put("ENVIRONMENTAL_DAMAGE", EnvironmentalDamage.class);
 	}
 }
