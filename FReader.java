@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 import combatlogparser.events.*;
 import combatlogparser.events.swing.*;
+import combatlogparser.events.range.*;
 //import org.json.simple.*;
 
 public class FReader {
@@ -22,8 +23,10 @@ public class FReader {
 					Class c = getEventClass(lp.getValues());
 					if (c != null) {
 						BaseEvent be = (BaseEvent)c.newInstance();
-						be.parse(lp.getTimeDate(), lp.getValues());
-						System.out.println(be.toString());
+						if (be.parse(lp.getTimeDate(), lp.getValues()) >= 1)
+							System.out.println(be.toString());
+						else
+							System.exit(1);
 					}
         			//System.exit(1);
 					//System.out.println(i + " " + s.replace(System.getProperty("line.separator"), ""));
@@ -56,6 +59,9 @@ public class FReader {
 
 	public static void createClassHashMap() {
 		classMap = new HashMap<String, Class>();
-		classMap.put("SWING_DAMAGE", SwingDamage.class);
+		//classMap.put("SWING_DAMAGE", SwingDamage.class);
+		//classMap.put("SWING_MISSED", SwingMissed.class);
+		//classMap.put("RANGE_DAMAGE", RangeDamage.class);
+		classMap.put("RANGE_MISSED", RangeMiss.class);
 	}
 }
