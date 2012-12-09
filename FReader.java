@@ -8,6 +8,7 @@ import combatlogparser.events.range.*;
 import combatlogparser.events.spell.*;
 import combatlogparser.events.spell.cast.*;
 import combatlogparser.events.spell.heal.*;
+import combatlogparser.events.spell.periodic.*;
 //import org.json.simple.*;
 
 public class FReader {
@@ -74,6 +75,7 @@ public class FReader {
 		classMap.put("SPELL_CAST_SUCCESS", CastSuccess.class);
 		//Spell Heal
 		classMap.put("SPELL_HEAL", SpellHeal.class);
+		classMap.put("SPELL_PERIODIC_HEAL", SpellPeriodicHeal.class);
 		//Spell Damage
 		classMap.put("SPELL_DAMAGE", SpellDamage.class);
 		classMap.put("SPELL_DISPEL", SpellDispel.class);
@@ -84,5 +86,11 @@ public class FReader {
 		classMap.put("SPELL_LEECH", SpellLeech.class);
 		classMap.put("SPELL_MISSED", SpellMissed.class);
 		classMap.put("SPELL_STOLEN", SpellStolen.class);
+		//Spell Periodic
+		classMap.put("SPELL_PERIODIC_DAMAGE", SpellPeriodicDamage.class);
+		classMap.put("SPELL_PERIODIC_DRAIN", SpellPeriodicDrain.class);
+		classMap.put("SPELL_PERIODIC_ENERGIZE", SpellPeriodicEnergize.class);
+		classMap.put("SPELL_PERIODIC_LEECH", SpellPeriodicLeech.class);
+		classMap.put("SPELL_PERIODIC_MISSED", SpellPeriodicMissed.class);
 	}
 }
