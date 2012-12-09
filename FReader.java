@@ -3,11 +3,15 @@ package combatlogparser;
 import java.io.*;
 import java.util.*;
 import combatlogparser.events.*;
+import combatlogparser.events.swing.*;
 //import org.json.simple.*;
 
 public class FReader {
+	private static HashMap<String, Class> classMap;
+
 	public static void main(String[] args) {
 		File testerLogFile = new File("Logs/CombatLog_01.txt");
+		createClassHashMap();
 		try {
 			BufferedReader br = endOfFile(testerLogFile);
 			while (true) {
@@ -15,12 +19,13 @@ public class FReader {
 				if (s != null) {
 					LineParser lp = new LineParser();
 					lp.parse(s);
-					BaseEvent be = new BaseEvent();
-					for (String ss : lp.getValues())
-						System.out.println(ss);
-					be.parse(lp.getTimeDate(), lp.getValues());
-					System.out.println(be.toString());
-        			System.exit(1);
+					Class c = getEventClass(lp.getValues());
+					if (c != null) {
+						BaseEvent be = (BaseEvent)c.newInstance();
+						be.parse(lp.getTimeDate(), lp.getValues());
+						System.out.println(be.toString());
+					}
+        			//System.exit(1);
 					//System.out.println(i + " " + s.replace(System.getProperty("line.separator"), ""));
 				}
 			}
@@ -43,5 +48,14 @@ public class FReader {
 		}
 
 		return null;
+	}
+
+	public static Class getEventClass(String[] s) {
+		return classMap.get(s[0].toUpperCase());
+	}
+
+	public static void createClassHashMap() {
+		classMap = new HashMap<String, Class>();
+		classMap.put("SWING_DAMAGE", SwingDamage.class);
 	}
 }

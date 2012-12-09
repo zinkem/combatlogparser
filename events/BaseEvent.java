@@ -1,6 +1,6 @@
 package combatlogparser.events;
 
-public class BaseEvent {
+public abstract class BaseEvent {
 	private String[] values = null;
 	private String timeStamp;
 	private String event;
