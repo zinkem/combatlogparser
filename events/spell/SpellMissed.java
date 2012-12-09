@@ -6,7 +6,7 @@ public class SpellMissed extends SpellBaseEvent {
 	private String missType;
 	private int amountMissed = -1;
 
-	public SwingMissed() {}
+	public SpellMissed() {}
 
 	public int parse(String timeDate, String[] values) {
 		int index = super.parse(timeDate, values);
@@ -15,7 +15,7 @@ public class SpellMissed extends SpellBaseEvent {
 
 		setMissType(values[index++]);
 		if (values.length == 16)
-
+			setAmountMissed(Integer.valueOf(values[index++]));
 
 		return index;
 	}

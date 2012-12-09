@@ -5,6 +5,9 @@ import java.util.*;
 import combatlogparser.events.*;
 import combatlogparser.events.swing.*;
 import combatlogparser.events.range.*;
+import combatlogparser.events.spell.*;
+import combatlogparser.events.spell.cast.*;
+import combatlogparser.events.spell.heal.*;
 //import org.json.simple.*;
 
 public class FReader {
@@ -59,9 +62,27 @@ public class FReader {
 
 	public static void createClassHashMap() {
 		classMap = new HashMap<String, Class>();
-		//classMap.put("SWING_DAMAGE", SwingDamage.class);
-		//classMap.put("SWING_MISSED", SwingMissed.class);
-		//classMap.put("RANGE_DAMAGE", RangeDamage.class);
+		//Swing
+		classMap.put("SWING_DAMAGE", SwingDamage.class);
+		classMap.put("SWING_MISSED", SwingMissed.class);
+		//Range
+		classMap.put("RANGE_DAMAGE", RangeDamage.class);
 		classMap.put("RANGE_MISSED", RangeMiss.class);
+		//Spell Cast
+		classMap.put("SPELL_CAST_FAILED", CastFailed.class);
+		classMap.put("SPELL_CAST_START", CastStart.class);
+		classMap.put("SPELL_CAST_SUCCESS", CastSuccess.class);
+		//Spell Heal
+		classMap.put("SPELL_HEAL", SpellHeal.class);
+		//Spell Damage
+		classMap.put("SPELL_DAMAGE", SpellDamage.class);
+		classMap.put("SPELL_DISPEL", SpellDispel.class);
+		classMap.put("SPELL_DISPEL_FAILED", SpellDispelFailed.class);
+		classMap.put("SPELL_DRAIN", SpellDrain.class);
+		classMap.put("SPELL_ENERGIZE", SpellEnergize.class);
+		classMap.put("SPELL_INTERRUPT", SpellInterrupt.class);
+		classMap.put("SPELL_LEECH", SpellLeech.class);
+		classMap.put("SPELL_MISSED", SpellMissed.class);
+		classMap.put("SPELL_STOLEN", SpellStolen.class);
 	}
 }
