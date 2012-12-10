@@ -2,6 +2,7 @@ package combatlogparser;
 
 import java.io.*;
 import java.util.*;
+import java.util.zip.DeflaterOutputStream;
 import combatlogparser.events.*;
 import combatlogparser.events.swing.*;
 import combatlogparser.events.range.*;
@@ -18,10 +19,14 @@ public class FReader {
 
 	public static void main(String[] args) {
 		File testerLogFile = new File("Logs/CombatLog_02.txt");
+		//File def = new File("report.dat");
 		createClassHashMap();
 		long sT = System.currentTimeMillis();
 		long lines = 0;
 		try {
+			/*if (!def.exists())
+				def.createNewFile();*/
+			//DataOutputStream out = new DataOutputStream(new DeflaterOutputStream(new FileOutputStream(def)));
 			BufferedReader br = endOfFile(testerLogFile);
 			//while (true) {
 				String s;// = br.readLine();
@@ -29,12 +34,14 @@ public class FReader {
 				//if (s != null) {
 					LineParser lp = new LineParser();
 					lp.parse(s);
-					System.out.println(s);
+					//System.out.println(s);
 					Class c = getEventClass(lp.getValues());
 					if (c != null) {
 						BaseEvent be = (BaseEvent)c.newInstance();
-						if (be.parse(lp.getTimeDate(), lp.getValues()) >= 1)
-							System.out.println(be.toString());
+						if (be.parse(lp.getTimeDate(), lp.getValues()) >= 1) {
+							//System.out.println(be.toString());
+							//out.writeBytes(s);
+						}
 						else {
 							long fT = (System.currentTimeMillis() - sT);
 							System.out.println(fT + " " + lines);
@@ -45,7 +52,8 @@ public class FReader {
         			//System.exit(1);
 					//System.out.println(i + " " + s.replace(System.getProperty("line.separator"), ""));
 				}
-				br = null;
+				br.close();
+				//out.close();
 			//}
 		} catch (Exception e) {
 			e.printStackTrace();
