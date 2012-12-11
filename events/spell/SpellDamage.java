@@ -1,8 +1,9 @@
 package combatlogparser.events.spell;
 
-import combatlogparser.events.spell.SpellBaseEvent;
+import combatlogparser.events.SpellDamageEvent;
+import combatlogparser.events.interfaces.DamageEventInterface;
 
-public class SpellDamage extends SpellBaseEvent {
+public class SpellDamage extends SpellDamageEvent implements DamageEventInterface {
 	private int amount;
 	private int overkill;
 	private int school;

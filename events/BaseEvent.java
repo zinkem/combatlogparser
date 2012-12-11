@@ -1,6 +1,8 @@
 package combatlogparser.events;
 
-public abstract class BaseEvent {
+import combatlogparser.events.interfaces.EventInterface;
+
+public abstract class BaseEvent implements EventInterface {
 	private String[] values = null;
 	private String timeStamp;
 	private String event;

@@ -2,10 +2,10 @@ package combatlogparser.events;
 
 import combatlogparser.events.BaseEvent;
 
-public abstract class MeleeDamageEvent extends BaseEvent implements EventInterface {
+public abstract class MeleeDamageEvent extends BaseEvent {
 	public MeleeDamageEvent() {}
 
-	public boolean parse(String timeDate, String[] values) {
+	public int parse(String timeDate, String[] values) {
 		return super.parse(timeDate, values);
 	}
 

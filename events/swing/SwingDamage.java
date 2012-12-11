@@ -1,7 +1,7 @@
 package combatlogparser.events.swing;
 
 import combatlogparser.events.MeleeDamageEvent;
-import combatlogparser.events.interface.DamageEventInterface;
+import combatlogparser.events.interfaces.DamageEventInterface;
 
 public class SwingDamage extends MeleeDamageEvent implements DamageEventInterface {
 	private int amount;

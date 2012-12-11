@@ -1,8 +1,9 @@
 package combatlogparser.events.spell.periodic;
 
-import combatlogparser.events.spell.SpellPeriodicBaseEvent;
+import combatlogparser.events.SpellPeriodicDamageEvent;
+import combatlogparser.events.interfaces.DamageEventInterface;
 
-public class SpellPeriodicDamage extends SpellPeriodicBaseEvent {
+public class SpellPeriodicDamage extends SpellPeriodicDamageEvent implements DamageEventInterface {
 	private int amount;
 	private int overkill;
 	private int school;
