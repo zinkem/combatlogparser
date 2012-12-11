@@ -14,6 +14,17 @@ public class CastStart extends SpellBaseEvent {
 		return index;
 	}
 
+	@Override
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof CastStart))
+			return false;
+		if (other == this)
+			return true;
+
+		return super.equals(other);
+	}
+
+	@Override
 	public String toString() {
 		return super.toString();
 	}

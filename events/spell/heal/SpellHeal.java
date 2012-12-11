@@ -1,8 +1,8 @@
 package combatlogparser.events.spell.heal;
 
-import combatlogparser.events.spell.SpellBaseEvent;
+import combatlogparser.events.HealEvent;
 
-public class SpellHeal extends SpellBaseEvent {
+public class SpellHeal extends HealEvent {
 	private int amount;
 	private int overhealing;
 	private int absorbed;
@@ -34,6 +34,21 @@ public class SpellHeal extends SpellBaseEvent {
 
 	public void setCritical(boolean b) { this.critical = b; }
 	public boolean getCritical() { return this.critical; }
+
+	@Override
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof SpellHeal) || !super.equals(other))
+			return false;
+		if (other == this)
+			return true;
+
+		SpellHeal that = (SpellHeal)other;
+
+		return (this.getAmount() == that.getAmount()) &&
+				(this.getOverhealing() == that.getOverhealing()) &&
+				(this.getAbsorbed() == that.getAbsorbed()) &&
+				(this.getCritical() == that.getCritical());
+	}
 
 	@Override
 	public String toString() {

@@ -23,6 +23,7 @@ public class Actors {
 		this.name = name;
 		this.guid = guid;
         events = new ArrayList<BaseEvent>();
+        System.out.println(this.getClass());
 	}
 
 	public Actors(Actors a) {
@@ -66,12 +67,10 @@ public class Actors {
 
     @Override
     public boolean equals(Object other) {
-    	if (other == null)
+    	if (other == null || !(other instanceof Actors))
     		return false;
     	if (other == this)
     		return true;
-    	if (!(other instanceof Actors))
-    		return false;
 
     	Actors that = (Actors)other;
 

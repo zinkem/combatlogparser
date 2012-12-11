@@ -20,6 +20,20 @@ public class CastFailed extends SpellBaseEvent {
 	public void setFailedType(String s) { this.failedType = s; }
 	public String getFailedType() { return this.failedType; }
 
+	@Override
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof CastSuccess) || !super.equals(other))
+			return false;
+		if (other == this)
+			return true;
+
+		CastFailed that = (CastFailed)other;
+
+		return (this.getFailedType().equalsIgnoreCase(that.getFailedType()));
+	}
+
+	@Override
+
 	public String toString() {
 		char newLine = '\n';
 		char tab = '\t';

@@ -81,13 +81,10 @@ public abstract class BaseEvent implements EventInterface {
 
 	@Override
 	public boolean equals(Object other) {
-		System.out.println("BE");
-		if (other == null)
+		if (other == null || !(other instanceof BaseEvent))
 			return false;
 		if (other == this)
 			return true;
-		if (!(other instanceof BaseEvent))
-			return false;
 
 		BaseEvent that = (BaseEvent)other;
 
