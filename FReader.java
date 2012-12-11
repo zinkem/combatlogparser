@@ -16,7 +16,7 @@ import combatlogparser.events.spell.periodic.*;
 
 public class FReader {
 	private static HashMap<String, Class> classMap;
-
+	
 	public static void main(String[] args) {
 		File testerLogFile = new File("Logs/CombatLog_02.txt");
 		//File def = new File("report.dat");
