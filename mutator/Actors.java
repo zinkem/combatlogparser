@@ -1,5 +1,19 @@
 package combatlogparser.mutator;
 
+import java.io.*;
+import java.util.*;
+import combatlogparser.*;
+import combatlogparser.events.*;
+import combatlogparser.events.swing.*;
+import combatlogparser.events.range.*;
+import combatlogparser.events.environmental.*;
+import combatlogparser.events.spell.*;
+import combatlogparser.events.spell.aura.*;
+import combatlogparser.events.spell.cast.*;
+import combatlogparser.events.spell.heal.*;
+import combatlogparser.events.spell.periodic.*;
+import combatlogparser.mutator.*;
+
 public class Actors {
 	private String name;
 	private String guid;
@@ -8,11 +22,13 @@ public class Actors {
 	public Actors(String name, String guid) {
 		this.name = name;
 		this.guid = guid;
+        events = new ArrayList<BaseEvent>();
 	}
 
 	public Actors(Actors a) {
 		this.name = a.getName();
 		this.guid = a.getGuid();
+        events = new ArrayList<BaseEvent>();   
 	}
 
     public void setName(String name) {
@@ -41,11 +57,11 @@ public class Actors {
     }
 
     public List<BaseEvent> getEvents(int i) {
-        return events.sublist(i, i);
+        return events.subList(i, i);
     }
 
     public List<BaseEvent> getEvents(int s, int e) {
-        return events.sublist(s, e);
+        return events.subList(s, e);
     }
 
     @Override

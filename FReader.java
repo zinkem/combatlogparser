@@ -3,6 +3,7 @@ package combatlogparser;
 import java.io.*;
 import java.util.*;
 import java.util.zip.DeflaterOutputStream;
+import combatlogparser.Constants;
 import combatlogparser.events.*;
 import combatlogparser.events.swing.*;
 import combatlogparser.events.range.*;
@@ -12,12 +13,27 @@ import combatlogparser.events.spell.aura.*;
 import combatlogparser.events.spell.cast.*;
 import combatlogparser.events.spell.heal.*;
 import combatlogparser.events.spell.periodic.*;
+import combatlogparser.mutator.*;
 //import org.json.simple.*;
 
 public class FReader {
 	private static HashMap<String, Class> classMap;
 	
 	public static void main(String[] args) {
+	try {
+		createClassHashMap();
+		String ss = "12/1 20:48:28.306  SPELL_AURA_APPLIED,0x020000000675BD15,\"Itarilde-Arthas\",0x514,0x0,0xF130F60700000BB3,\"Lei Shi\",0x10a48,0x0,120679,\"Dire Beast\",0x8,DEBUFF";
+		LineParser lpp = new LineParser();
+		lpp.parse(ss);
+		Class cc = getEventClass(lpp.getValues());
+		BaseEvent bee = (BaseEvent)cc.newInstance();
+		bee.parse(lpp.getTimeDate(), lpp.getValues());
+		Actors a = new Actors(bee.getSourceName(), bee.getSourceGUID());
+		a.addEvents(bee);
+		System.out.println("CS");
+		a.addEvents(bee);
+		System.exit(1);
+	} catch (Exception e) { e.printStackTrace(); }
 		File testerLogFile = new File("Logs/CombatLog_02.txt");
 		//File def = new File("report.dat");
 		createClassHashMap();

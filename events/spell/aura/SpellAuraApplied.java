@@ -22,6 +22,7 @@ public class SpellAuraApplied extends SpellBaseEvent {
 
 	@Override
 	public boolean equals(Object other) {
+		System.out.println("AA");
 		if (other == null || !(other instanceof SpellAuraApplied) || !super.equals(other))
 			return false;
 		if (other == this)

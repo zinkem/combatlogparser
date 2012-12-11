@@ -1,8 +1,9 @@
 package combatlogparser.events.swing;
 
-import combatlogparser.events.BaseEvent;
+import combatlogparser.events.MeleeDamageEvent;
+import combatlogparser.events.interface.DamageEventInterface;
 
-public class SwingDamage extends BaseEvent {
+public class SwingDamage extends MeleeDamageEvent implements DamageEventInterface {
 	private int amount;
 	private int overkill;
 	private int school;

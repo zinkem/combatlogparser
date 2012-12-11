@@ -79,6 +79,7 @@ public abstract class BaseEvent {
 
 	@Override
 	public boolean equals(Object other) {
+		System.out.println("BE");
 		if (other == null)
 			return false;
 		if (other == this)

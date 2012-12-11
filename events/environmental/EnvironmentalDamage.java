@@ -1,8 +1,9 @@
 package combatlogparser.events.environmental;
 
+import combatlogparser.events.interface.*;
 import combatlogparser.events.environmental.EnvironmentalBaseEvent;
 
-public class EnvironmentalDamage extends EnvironmentalBaseEvent {
+public class EnvironmentalDamage extends EnvironmentalBaseEvent implements DamageEventInterface, EventInterface {
 	private int amount;
 	private int overkill;
 	private int school;
