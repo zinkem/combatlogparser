@@ -78,6 +78,29 @@ public abstract class BaseEvent {
 	}
 
 	@Override
+	public boolean equals(Object other) {
+		if (other == null)
+			return false;
+		if (other == this)
+			return true;
+		if (!(other instanceof BaseEvent))
+			return false;
+
+		BaseEvent that = (BaseEvent)other;
+
+		return (this.getTimeStamp().equalsIgnoreCase(that.getTimeStamp())) &&
+				(this.getEvent().equalsIgnoreCase(this.getEvent())) &&
+				(this.getSourceGUID().equalsIgnoreCase(that.getSourceGUID())) &&
+				(this.getSourceName().equalsIgnoreCase(that.getSourceName())) &&
+				(this.getSourceFlag() == that.getSourceFlag()) &&
+				(this.getSourceRaidFlag() == that.getSourceRaidFlag()) &&
+				(this.getDestGUID().equalsIgnoreCase(that.getDestGUID())) &&
+				(this.getDestName().equalsIgnoreCase(that.getDestName())) &&
+				(this.getDestFlag() == that.getDestFlag()) &&
+				(this.getDestRaidFlag() == that.getDestRaidFlag());
+	}
+
+	@Override
 	public String toString() {
 		char newLine = '\n';
 		char tab = '\t';

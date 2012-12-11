@@ -3,7 +3,7 @@ package combatlogparser.mutator;
 public class Actors {
 	private String name;
 	private String guid;
-    private ArrayList<BaseEvent> events;
+    private List<BaseEvent> events;
 
 	public Actors(String name, String guid) {
 		this.name = name;
@@ -36,12 +36,16 @@ public class Actors {
             events.add(b);
     }
 
-    public ArrayList<BaseEvent> getEvents() {
+    public List<BaseEvent> getEvents() {
         return this.events;
     }
 
-    public BaseEvent getEvents(int i) {
-        return events.get(i);
+    public List<BaseEvent> getEvents(int i) {
+        return events.sublist(i, i);
+    }
+
+    public List<BaseEvent> getEvents(int s, int e) {
+        return events.sublist(s, e);
     }
 
     @Override
