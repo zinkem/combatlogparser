@@ -26,6 +26,7 @@ public class SpellMissed extends SpellBaseEvent {
 	public void setAmountMissed(int i) { this.amountMissed = i; }
 	public int getAmountMissed() { return this.amountMissed; }
 
+	@Override
 	public String toString() {
 		char newLine = '\n';
 		char tab = '\t';
