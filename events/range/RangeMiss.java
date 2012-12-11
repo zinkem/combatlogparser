@@ -21,6 +21,18 @@ public class RangeMiss extends RangeBaseEvent {
 	public String getMissType() { return this.missType; }
 
 	@Override
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof RangeMiss) || !super.equals(other))
+			return false;
+		if (other == this)
+			return true;
+
+		RangeMiss that = (RangeMiss)other;
+
+		return (this.getMissType().equalsIgnoreCase(that.getMissType()));
+	}
+
+	@Override
 	public String toString() {
 		char newLine = '\n';
 		char tab = '\t';

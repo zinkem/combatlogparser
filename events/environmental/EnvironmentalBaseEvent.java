@@ -21,6 +21,18 @@ public class EnvironmentalBaseEvent extends BaseEvent {
 	public String getEnvironmentalType() { return this.environmentalType; }
 
 	@Override
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof EnvironmentalBaseEvent) || !super.equals(other))
+			return false;
+		if (other == this)
+			return true;
+
+		EnvironmentalBaseEvent that = (EnvironmentalBaseEvent)other;
+
+		return (this.getEnvironmentalType().equalsIgnoreCase(that.getEnvironmentalType()));
+	}
+
+	@Override
 	public String toString() {
 		char newLine = '\n';
 		char tab = '\n';

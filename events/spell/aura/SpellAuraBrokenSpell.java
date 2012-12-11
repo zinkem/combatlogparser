@@ -36,6 +36,21 @@ public class SpellAuraBrokenSpell extends SpellBaseEvent {
 	public String getAuraType() { return this.auraType; }
 
 	@Override
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof SpellAuraBrokenSpell) || !super.equals(other))
+			return false;
+		if (other == this)
+			return true;
+
+		SpellAuraBrokenSpell that = (SpellAuraBrokenSpell)other;
+
+		return (this.getExtraSpellID() == that.getExtraSpellID()) &&
+				(this.getExtraSpellName().equalsIgnoreCase(that.getExtraSpellName())) &&
+				(this.getExtraSpellID() == that.getExtraSpellID()) &&
+				(this.getAuraType().equalsIgnoreCase(that.getAuraType()));
+	}
+
+	@Override
 	public String toString() {
 		char newLine = '\n';
 		char tab = '\t';

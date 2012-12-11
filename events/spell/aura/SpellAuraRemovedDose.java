@@ -21,6 +21,18 @@ public class SpellAuraRemovedDose extends SpellBaseEvent {
 	public String getAuraType() { return this.auraType; }
 
 	@Override
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof SpellAuraRemovedDose) || !super.equals(other))
+			return false;
+		if (other == this)
+			return true;
+
+		SpellAuraRemovedDose that = (SpellAuraRemovedDose)other;
+
+		return (this.getAuraType().equalsIgnoreCase(that.getAuraType()));
+	}
+
+	@Override
 	public String toString() {
 		char newLine = '\n';
 		char tab = '\t';

@@ -31,6 +31,20 @@ public class RangeBaseEvent extends BaseEvent {
 	public int getSpellSchool() { return this.spellSchool; }
 
 	@Override
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof RangeBaseEvent) || !super.equals(other))
+			return false;
+		if (other == this)
+			return true;
+
+		RangeBaseEvent that = (RangeBaseEvent)other;
+
+		return (this.getSpellID() == that.getSpellID()) &&
+				(this.getSpellName().equalsIgnoreCase(that.getSpellName())) &&
+				(this.getSpellSchool() == that.getSpellSchool());
+	}
+
+	@Override
 	public String toString() {
 		char newLine = '\n';
 		char tab = '\t';

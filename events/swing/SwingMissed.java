@@ -20,6 +20,19 @@ public class SwingMissed extends BaseEvent {
 	public void setMissType(String s) { this.missType = s.trim(); }
 	public String getMissType() { return this.missType; }
 
+	@Override
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof SwingMissed) || !super.equals(other))
+			return false;
+		if (other == this)
+			return true;
+
+		SwingMissed that = (SwingMissed)other;
+
+		return (this.getMissType().equalsIgnoreCase(that.getMissType()));
+	}
+
+	@Override
 	public String toString() {
 		char newLine = '\n';
 		char tab = '\t';

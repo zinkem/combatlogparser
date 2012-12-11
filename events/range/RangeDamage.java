@@ -61,6 +61,26 @@ public class RangeDamage extends RangeBaseEvent {
 	public boolean getCrushing() { return this.crushing; }
 
 	@Override
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof RangeDamage) || !super.equals(other))
+			return false;
+		if (other == this)
+			return true;
+
+		RangeDamage that = (RangeDamage)other;
+
+		return (this.getAmount() == that.getAmount()) &&
+				(this.getOverkill() == that.getOverkill()) &&
+				(this.getSchool() == that.getSchool()) &&
+				(this.getResisted() == that.getResisted()) &&
+				(this.getBlocked() == that.getBlocked()) &&
+				(this.getAbsorbed() == that.getAbsorbed()) &&
+				(this.getCritical() == that.getCritical()) &&
+				(this.getGlancing() == that.getGlancing()) &&
+				(this.getCrushing() == that.getCrushing());
+	}
+
+	@Override
 	public String toString() {
 		char newLine = '\n';
 		char tab = '\t';
