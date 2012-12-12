@@ -1,8 +1,9 @@
 package combatlogparser.events.special;
 
 import combatlogparser.events.BaseEvent;
+import combatlogparser.events.interfaces.EventInterface;
 
-public class PartyKill extends BaseEvent {
+public class PartyKill extends BaseEvent implements EventInterface {
 
 	public PartyKill() {}
 

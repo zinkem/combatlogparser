@@ -21,6 +21,9 @@ public class FReader {
 	private static HashMap<String, Class> classMap;
 	
 	public static void main(String[] args) {
+		String l = "F130F3C800003E94";
+		System.out.println(npcID(l));
+		System.exit(1);
 	/*try {
 		createClassHashMap();
 		String ss = "12/1 20:48:28.306  SPELL_AURA_APPLIED,0x020000000675BD15,\"Itarilde-Arthas\",0x514,0x0,0xF130F60700000BB3,\"Lei Shi\",0x10a48,0x0,120679,\"Dire Beast\",0x8,DEBUFF";
@@ -35,7 +38,7 @@ public class FReader {
 		a.addEvents(bee);
 		System.exit(1);
 	} catch (Exception e) { e.printStackTrace(); }*/
-		File testerLogFile = new File("Logs/CombatLog_02.txt");
+		File testerLogFile = new File("C:\\Users\\W3S\\Desktop\\WoWCombatLog.txt");
 		//File def = new File("report.dat");
 		createClassHashMap();
 		long sT = System.currentTimeMillis();
@@ -64,6 +67,8 @@ public class FReader {
 							freq.put(ss[0], count + 1);
 						}
 						else {
+							System.out.println("FAILED");
+							System.out.println(s);
 							long fT = (System.currentTimeMillis() - sT);
 							System.out.println(fT + " " + lines);
 							System.exit(1);
@@ -100,6 +105,23 @@ public class FReader {
 		}
 
 		return null;
+	}
+
+	public static int unitTypeGUID(String guid) {
+		if (guid.contains("0x"))
+			return Integer.valueOf(guid.substring(4,5));
+
+		return Integer.valueOf(guid.substring(2,3));
+	}
+
+	public static int npcID(String guid) {
+		if (unitTypeGUID(guid) != Constants.UNIT_TYPE_NPC)
+			return -1;
+
+		if (guid.contains("0x"))
+			return Integer.parseInt(guid.substring(6,10), 16);
+
+		return Integer.parseInt(guid.substring(4,8), 16);
 	}
 
 	public static Class getEventClass(String[] s) {

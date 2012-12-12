@@ -1,8 +1,9 @@
 package combatlogparser.events.special;
 
 import combatlogparser.events.DeathEvent;
+import combatlogparser.events.interfaces.EventInterface;
 
-public class UnitDied extends DeathEvent {
+public class UnitDied extends DeathEvent implements EventInterface {
 
 	public UnitDied() {}
 

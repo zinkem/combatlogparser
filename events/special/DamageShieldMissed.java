@@ -1,8 +1,9 @@
 package combatlogparser.events.special;
 
 import combatlogparser.events.spell.SpellBaseEvent;
+import combatlogparser.events.interfaces.EventInterface;
 
-public class DamageShieldMissed extends SpellBaseEvent {
+public class DamageShieldMissed extends SpellBaseEvent implements EventInterface {
 	private String missType;
 	private int amountMissed = -1;
 
@@ -25,6 +26,19 @@ public class DamageShieldMissed extends SpellBaseEvent {
 
 	public void setAmountMissed(int i) { this.amountMissed = i; }
 	public int getAmountMissed() { return this.amountMissed; }
+
+	@Override
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof DamageShield) || !super.equals(other))
+			return false;
+		if (other == this)
+			return true;
+
+		DamageShieldMissed that = (DamageShieldMissed)other;
+
+		return (this.getMissType().equalsIgnoreCase(that.getMissType())) &&
+				(this.getAmountMissed() == this.getAmountMissed());
+	}
 
 	@Override
 	public String toString() {

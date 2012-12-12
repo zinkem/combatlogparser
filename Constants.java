@@ -1,6 +1,12 @@
 package combatlogparser;
 
 public interface Constants {
+    public static final int UNIT_TYPE_PLAYER = 0;
+    public static final int UNIT_TYPE_WORLD_OBJECT = 1;
+    public static final int UNIT_TYPE_NPC = 3;
+    public static final int UNIT_TYPE_PERMANENT_PETS = 4;
+    public static final int UNIT_TYPE_VEHICLES = 5;
+    
     public static final long FLAGS_OBJECT_AFFILIATION_MASK = 15;
     public static final long FLAGS_OBJECT_AFFILIATION_MINE = 1;
     public static final long FLAGS_OBJECT_AFFILIATION_OUTSIDER = 8;
