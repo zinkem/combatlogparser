@@ -9,7 +9,7 @@ public class SpellAuraBroken extends SpellBaseEvent {
 
 	public int parse(String timeDate, String[] values) {
 		int index = super.parse(timeDate, values);
-		if (index < 0 || values.length < index + 2)
+		if (index < 0 || values.length < index + 1)
 			return -1;
 
 		setAuraType(values[index++]);
