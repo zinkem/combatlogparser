@@ -32,7 +32,6 @@ public class SpellBaseEvent extends BaseEvent {
 
 	@Override
 	public boolean equals(Object other) {
-		System.out.println("SBE");
 		if (other == null || !(other instanceof SpellBaseEvent) || !super.equals(other))
 			return false;
 		if (other == this)

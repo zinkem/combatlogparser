@@ -85,4 +85,7 @@ public interface Constants {
     public static final int CLASS_WARLOCK = 9;
     public static final int CLASS_MONK = 10;
     public static final int CLASS_DRUID = 11;
+
+    public static final int FIGHT_TIME_DELTA_SECONDS = 15;
+    public static final int FIGHT_TIME_DELTA_MILLISECONDS = 15000;
 }

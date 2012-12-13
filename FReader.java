@@ -1,3 +1,5 @@
+//26769ms 1006813 lines
+
 package combatlogparser;
 
 import java.io.*;
@@ -21,9 +23,6 @@ public class FReader {
 	private static HashMap<String, Class> classMap;
 	
 	public static void main(String[] args) {
-		String l = "F130F3C800003E94";
-		System.out.println(npcID(l));
-		System.exit(1);
 	/*try {
 		createClassHashMap();
 		String ss = "12/1 20:48:28.306  SPELL_AURA_APPLIED,0x020000000675BD15,\"Itarilde-Arthas\",0x514,0x0,0xF130F60700000BB3,\"Lei Shi\",0x10a48,0x0,120679,\"Dire Beast\",0x8,DEBUFF";
@@ -38,12 +37,13 @@ public class FReader {
 		a.addEvents(bee);
 		System.exit(1);
 	} catch (Exception e) { e.printStackTrace(); }*/
-		File testerLogFile = new File("C:\\Users\\W3S\\Desktop\\WoWCombatLog.txt");
+		File testerLogFile = new File("C:\\Users\\W3S\\Desktop\\WoWCombatLog_2.txt");
 		//File def = new File("report.dat");
 		createClassHashMap();
 		long sT = System.currentTimeMillis();
-		long lines = 0;
-		Map<String, Integer> freq = new HashMap<String, Integer>();	
+		int lines = 0;
+		Map<String, Integer> freq = new HashMap<String, Integer>();
+		Events events = new Events();
 		try {		
 			/*if (!def.exists())
 				def.createNewFile();*/
@@ -65,6 +65,8 @@ public class FReader {
 							String[] ss = lp.getValues();
 							int count = freq.containsKey(ss[0]) ? freq.get(ss[0]) : 0;
 							freq.put(ss[0], count + 1);
+
+							events.addEvent(lp.getTimeDate(), be, lines);
 						}
 						else {
 							System.out.println("FAILED");
@@ -75,6 +77,11 @@ public class FReader {
 						}
 					}
 					++lines;
+
+					if ((lines % 1000) == 0) {
+						System.out.println((System.currentTimeMillis() - sT) + "ms " + lines + " lines");
+					}
+
         			//System.exit(1);
 					//System.out.println(i + " " + s.replace(System.getProperty("line.separator"), ""));
 				}
@@ -87,7 +94,6 @@ public class FReader {
 		}
 		long fT = (System.currentTimeMillis() - sT);
 		System.out.println(fT + "ms " + lines + " lines");
-
 		for (String key : freq.keySet())
 			System.out.println(key + " -> " + freq.get(key));
 	}
@@ -181,5 +187,21 @@ public class FReader {
 		classMap.put("DAMAGE_SHIELD", DamageShield.class);
 		classMap.put("DAMAGE_SPLIT", DamageSplit.class);
 		classMap.put("DAMAGE_SHIELD_MISSED", DamageShieldMissed.class);
+	}
+}
+
+class TimePrinter extends Thread {
+	private long st;
+	private long ct;
+	private int lines;
+
+	public TimePrinter(long st, long ct, int lines) {
+		this.st = st;
+		this.ct = ct;
+		this.lines = lines;
+	}
+
+	public void run() {
+		System.out.println((ct - st) + "ms " + lines + " lines");
 	}
 }

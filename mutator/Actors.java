@@ -19,11 +19,10 @@ public class Actors {
 	private String guid;
     private List<BaseEvent> events;
 
-	public Actors(String name, String guid) {
-		this.name = name;
+	public Actors(String guid, String name) {
 		this.guid = guid;
+        this.name = name;
         events = new ArrayList<BaseEvent>();
-        System.out.println(this.getClass());
 	}
 
 	public Actors(Actors a) {
@@ -66,6 +65,12 @@ public class Actors {
     }
 
     @Override
+    public int hashCode() {
+        return 27 * (this.getName() == null ? 0 : this.getName().hashCode()) +
+                    (this.getGuid() == null ? 0 : this.getName().hashCode());
+    }
+
+    @Override
     public boolean equals(Object other) {
     	if (other == null || !(other instanceof Actors))
     		return false;
@@ -85,7 +90,7 @@ public class Actors {
 
         s += "Name = " + getName() + newLine;
         s += tab + "GUID = " + getGuid() + newLine;
-
+        s += tab + "Events = " + this.events.size() + newLine;
         return s;
     }
 }

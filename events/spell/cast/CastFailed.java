@@ -22,7 +22,7 @@ public class CastFailed extends SpellBaseEvent {
 
 	@Override
 	public boolean equals(Object other) {
-		if (other == null || !(other instanceof CastSuccess) || !super.equals(other))
+		if (other == null || !(other instanceof CastFailed) || !super.equals(other))
 			return false;
 		if (other == this)
 			return true;
