@@ -82,6 +82,9 @@ public class FReader {
 						System.out.println((System.currentTimeMillis() - sT) + "ms " + lines + " lines");
 					}
 
+					if ((lines % 48000) == 0)
+						System.exit(1);
+
         			//System.exit(1);
 					//System.out.println(i + " " + s.replace(System.getProperty("line.separator"), ""));
 				}

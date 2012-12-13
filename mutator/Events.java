@@ -23,28 +23,28 @@ public class Events {
 	}
 
 	public void addEvent(String timeDate, BaseEvent be, int line) {
-		if (!this.events.contains(be)) {
 			long thisUpdate = unixTimeDate(timeDate);
 
 			if (this.lastUpdate == 0)
 				this.lastUpdate = thisUpdate;
 
-			this.events.add(be);
-			//System.out.println(thisUpdate + " - " + this.lastUpdate + " = " + (thisUpdate - this.lastUpdate));
 			if ((thisUpdate - this.lastUpdate) >= Constants.FIGHT_TIME_DELTA_MILLISECONDS) {
 				//Send the fight into EventsThread for processing
 				//Reset startLine and endLine
 				//System.out.println(this.startLine + " => " + line);
 				this.lastUpdate = thisUpdate;
-				Thread t = new EventsThread(new ArrayList<BaseEvent>(this.events.subList(0, line - this.startLine)));
+				//System.out.println(be.toString());
+				Thread t = new EventsThread(new ArrayList<BaseEvent>(this.events.subList(0, this.events.size() - 1)));
 				t.start();
-				System.out.println("Fight lines: " + this.startLine + " to " + line);
+				//System.out.println("Fight lines: " + this.startLine + " to " + line);
 				this.events = new ArrayList<BaseEvent>();
 				this.startLine = ++line;
 			}
 			else
 				this.lastUpdate = thisUpdate;
-		}
+
+			this.events.add(be);
+			//System.out.println(thisUpdate + " - " + this.lastUpdate + " = " + (thisUpdate - this.lastUpdate));
 	}
 
 	private long unixTimeDate(String timeDate) {
