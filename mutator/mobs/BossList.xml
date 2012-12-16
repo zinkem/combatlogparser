@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<boss encounter="The Stone Guard" instance="Mogu'shan Vaults">
+		<mob name="Amethyst Guardian" id="60047" isBoss="true"/>
+		<mob name="Cobalt Guardian" id="60051" isBoss="true"/>
+		<mob name="Jade Guardian" id="60043" isBoss="true"/>
+		<mob name="Jasper Guardian" id="59915" isBoss="true"/>
+	</boss>
+	<boss encounter="Feng the Accursed" instance="Mogu'shan Vaults">
+		<mob name="Feng the Accursed" id="60009" isBoss="true"/>
+	</boss>
+	<boss encounter="Gara'jal the Spiritbinder" instance="Mogu'shan Vaults">
+		<mob name="Gara'jal the Spiritbinder" id="60143" isBoss="true"/>
+	</boss>
+	<boss encounter="Spirit Kings" instance="Mogu'shan Vaults">
+		<mob name="Zian of the Endless Shadow" id="60701" isBoss="true"/>
+		<mob name="Qiang the Merciless" id="60709" isBoss="true"/>
+		<mob name="Meng the Demented" id="60708" isBoss="true"/>
+		<mob name="Subetai the Swift" id="60710" isBoss="true"/>
+	</boss>
+	<boss encounter="Elegon" instance="Mogu'shan Vaults">
+		<mob name="Elegon" id="60410" isBoss="true"/>
+	</boss>
+	<boss encounter="Will of the Emperor" instance="Mogu'shan Vaults">
+		<mob name="Jan-xi" id="60400" isBoss="true"/>
+		<mob name="Qin-xi" id="60399" isBoss="true"/>
+		<mob name="Emperor's Rage" id="60396"/>
+		<mob name="Emperor's Strength" id="60398"/>
+		<mob name="Emperor's Courage" id="60397"/>
+	</boss>
+</root>
