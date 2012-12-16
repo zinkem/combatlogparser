@@ -16,7 +16,7 @@ import combatlogparser.events.spell.aura.*;
 import combatlogparser.events.spell.cast.*;
 import combatlogparser.events.spell.heal.*;
 import combatlogparser.events.spell.periodic.*;
-import combatlogparser.mutator.*;
+import combatlogparser.mutator.Events;
 //import org.json.simple.*;
 
 public class FReader {
@@ -37,7 +37,7 @@ public class FReader {
 		a.addEvents(bee);
 		System.exit(1);
 	} catch (Exception e) { e.printStackTrace(); }*/
-		File testerLogFile = new File("C:\\Users\\W3S\\Desktop\\WoWCombatLog_2.txt");
+		File testerLogFile = new File("C:\\Users\\W3S\\Desktop\\WoWCombatLog.txt");
 		//File def = new File("report.dat");
 		createClassHashMap();
 		long sT = System.currentTimeMillis();
@@ -82,8 +82,8 @@ public class FReader {
 						System.out.println((System.currentTimeMillis() - sT) + "ms " + lines + " lines");
 					}
 
-					if ((lines % 48000) == 0)
-						System.exit(1);
+					/*if ((lines % 48000) == 0)
+						System.exit(1);*/
 
         			//System.exit(1);
 					//System.out.println(i + " " + s.replace(System.getProperty("line.separator"), ""));

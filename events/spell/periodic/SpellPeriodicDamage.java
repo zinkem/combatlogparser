@@ -4,15 +4,6 @@ import combatlogparser.events.SpellPeriodicDamageEvent;
 import combatlogparser.events.interfaces.DamageEventInterface;
 
 public class SpellPeriodicDamage extends SpellPeriodicDamageEvent implements DamageEventInterface {
-	private int amount;
-	private int overkill;
-	private int school;
-	private int resisted;
-	private int blocked;
-	private int absorbed;
-	private boolean critical;
-	private boolean glancing;
-	private boolean crushing;
 
 	public SpellPeriodicDamage() {}
 
@@ -35,32 +26,25 @@ public class SpellPeriodicDamage extends SpellPeriodicDamageEvent implements Dam
 		return index;
 	}
 
-	public void setAmount(int i) { this.amount = i; }
-	public int getAmount() { return this.amount; }
+	@Override
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof SpellPeriodicDamage) || !super.equals(other))
+			return false;
+		if (other == this)
+			return true;
 
-	public void setOverkill(int i) { this.overkill = i; }
-	public int getOverkill() { return this.overkill; }
+		SpellPeriodicDamage that = (SpellPeriodicDamage)other;
 
-	public void setSchool(int i) { this.school = i; }
-	public int getSchool() { return this.school; }
-
-	public void setResisted(int i) { this.resisted = i; }
-	public int getResisted() { return this.resisted; }
-
-	public void setBlocked(int i) { this.blocked = i; }
-	public int getBlocked() { return this.blocked; }
-
-	public void setAbsorbed(int i) { this.absorbed = i; }
-	public int getAbsorbed() { return this.absorbed; }
-
-	public void setCritical(String s) { this.critical = s.contains("nil"); }
-	public boolean getCritical() { return this.critical; }
-
-	public void setGlancing(String s) { this.glancing = s.contains("nil"); }
-	public boolean getGlancing() { return this.glancing; }
-
-	public void setCrushing(String s) { this.crushing = s.contains("nil"); }
-	public boolean getCrushing() { return this.crushing; }
+		return (this.getAmount() == that.getAmount()) &&
+				(this.getOverkill() == that.getOverkill()) &&
+				(this.getSchool() == that.getSchool()) &&
+				(this.getResisted() == that.getResisted()) &&
+				(this.getBlocked() == that.getBlocked()) &&
+				(this.getAbsorbed() == that.getAbsorbed()) &&
+				(this.getCritical() == that.getCritical()) &&
+				(this.getGlancing() == that.getGlancing()) &&
+				(this.getCrushing() == that.getCrushing());
+	}
 
 	@Override
 	public String toString() {

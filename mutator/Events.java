@@ -5,6 +5,7 @@ import java.util.*;
 import java.text.*;
 import combatlogparser.*;
 import combatlogparser.events.BaseEvent;
+import combatlogparser.mutator.EventsThread;
 
 public class Events {
 	private List<BaseEvent> events;
@@ -60,18 +61,5 @@ public class Events {
 			System.exit(1);
 		}
 		return (long)d.getTime();
-	}
-}
-
-class EventsThread extends Thread {
-	private ArrayList<BaseEvent> events;
-
-	public EventsThread(ArrayList<BaseEvent> events) {
-		this.events = events;
-	}
-
-	public void run() {
-		//Deal with fight shit here
-		System.out.println("Thead END");
 	}
 }
