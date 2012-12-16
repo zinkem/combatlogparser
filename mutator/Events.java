@@ -9,10 +9,6 @@ import combatlogparser.mutator.EventsThread;
 
 public class Events {
 	private List<BaseEvent> events;
-	private boolean isFinsihed;
-	private int startLine = 0;
-	/*private int endLine = 0;
-	private int curLine = 0;*/
 	private long lastUpdate = 0;
 
 	public Events() {
@@ -39,13 +35,17 @@ public class Events {
 				t.start();
 				//System.out.println("Fight lines: " + this.startLine + " to " + line);
 				this.events = new ArrayList<BaseEvent>();
-				this.startLine = ++line;
 			}
 			else
 				this.lastUpdate = thisUpdate;
 
 			this.events.add(be);
 			//System.out.println(thisUpdate + " - " + this.lastUpdate + " = " + (thisUpdate - this.lastUpdate));
+	}
+
+	public void finishEvent() {
+		Thread t = new EventsThread(new ArrayList<BaseEvent>(this.events.subList(0, this.events.size() - 1)));
+		t.start();
 	}
 
 	private long unixTimeDate(String timeDate) {
