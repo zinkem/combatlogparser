@@ -17,6 +17,8 @@ public class EventsThread extends Thread {
 	public void run() {
 		//Deal with fight shit here
 		Fight f = new Fight(this.events);
+		f.mapActors();
+		f.printActors();
 		System.out.println(f.toString());
 	}
 }

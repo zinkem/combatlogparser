@@ -88,4 +88,8 @@ public interface Constants {
 
     public static final int FIGHT_TIME_DELTA_SECONDS = 15;
     public static final int FIGHT_TIME_DELTA_MILLISECONDS = 15000;
+
+    public static final String BOSS_XML_BASE = "bossXML/BossListREGION.xml";
+    public static final String BOSS_XML_DEFAULT = "bossXML/BossListEN.xml";
+    public static final String BOSS_XML_EN = "bossXML/BossListEN.xml";
 }

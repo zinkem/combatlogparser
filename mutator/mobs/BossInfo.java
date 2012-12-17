@@ -1,15 +1,17 @@
-package combatlogparse.mutator.mobs;
+package combatlogparser.mutator.mobs;
 
 import java.util.*;
 
 public class BossInfo {
 	private double maxIdleTime;
 	private String encounterName;
+    private String encounterLocation;
 	private List<NPCInfo> mobs;
 
-	public BossInfo(String encounterName) {
+	public BossInfo(String encounterName, String encounterLocation) {
 		this.maxIdleTime = 15;
 		this.encounterName = encounterName;
+        this.encounterLocation = encounterLocation;
 		this.mobs = new ArrayList<NPCInfo>();
 	}
 
@@ -31,6 +33,14 @@ public class BossInfo {
 
     public String getEncounterName() {
         return this.encounterName;
+    }
+
+    public void setEncounterLocation(String encounterLocation) {
+        this.encounterLocation = encounterLocation;
+    }
+
+    public String getEncounterLocation() {
+        return this.encounterLocation;
     }
 
     public void setMobs(List<NPCInfo> mobs) {

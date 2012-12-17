@@ -1,4 +1,4 @@
-package combatlogparse.mutator.mobs;
+package combatlogparser.mutator.mobs;
 
 public class NPCInfo {
 	private String name;

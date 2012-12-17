@@ -13,12 +13,21 @@ import combatlogparser.events.spell.aura.*;
 import combatlogparser.events.spell.cast.*;
 import combatlogparser.events.spell.heal.*;
 import combatlogparser.events.spell.periodic.*;
+import combatlogparser.mutator.*;
+import combatlogparser.mutator.mobs.*;
+import combatlogparser.mutator.helpers.*;
+import org.w3c.dom.Node;
 
 public class Fight {
 	private ArrayList<BaseEvent> events;
+	private Map<String, String> actors;
+	private boolean isBoss;
+	private String fightInstance;
+	private String fightName;
 
 	public Fight(ArrayList<BaseEvent> events) {
 		this.events = events;
+		this.actors = new HashMap<String, String>();
 	}
 
 	public long getFightDuration() {
@@ -105,6 +114,48 @@ public class Fight {
 		}
 		return (long)d.getTime();
 	}
+
+	public void mapActors() {
+		for (BaseEvent be : events) {
+			String name = actors.containsKey(be.getSourceGUID()) ? actors.get(be.getSourceGUID()) : be.getSourceName();
+			actors.put(be.getSourceGUID(), be.getSourceName());
+		}
+	}
+
+	public void printActors() {
+		for (String key : actors.keySet())
+			System.out.println(key + " -> " + actors.get(key));
+	}
+
+	public void checkForBoss() {
+		ArrayList<BossInfo> bossInfoList = new ArrayList<BossInfo>();
+		XmlInfoParser xip = new XmlInfoParser("EN");
+		List<Node> bossNodes = xip.getChildNodes("boss");
+	}
+
+    public void setIsBoss(boolean isBoss) {
+        this.isBoss = isBoss;
+    }
+
+    public boolean getIsBoss() {
+        return this.isBoss;
+    }
+
+    public void setFightInstance(String fightInstance) {
+        this.fightInstance = fightInstance;
+    }
+
+    public String getFightInstance() {
+        return this.fightInstance;
+    }
+
+    public void setFightName(String fightName) {
+        this.fightName = fightName;
+    }
+
+    public String getFightName() {
+        return this.fightName;
+    }
 
 	@Override
 	public String toString() {

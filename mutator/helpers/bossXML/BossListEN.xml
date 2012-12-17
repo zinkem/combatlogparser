@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
+	<!--
+		Tier 14
+	-->
+
+	<!-- Mogu'shan Vaults -->
 	<boss encounter="The Stone Guard" instance="Mogu'shan Vaults">
 		<mob name="Amethyst Guardian" id="60047" isBoss="true"/>
 		<mob name="Cobalt Guardian" id="60051" isBoss="true"/>
@@ -28,4 +33,7 @@
 		<mob name="Emperor's Strength" id="60398"/>
 		<mob name="Emperor's Courage" id="60397"/>
 	</boss>
+
+	<!-- Heart of Fear -->
+	<!-- Terrace of Endless Springs -->
 </root>
