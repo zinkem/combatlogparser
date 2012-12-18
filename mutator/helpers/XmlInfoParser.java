@@ -58,4 +58,30 @@ public class XmlInfoParser {
 
 		return returnNodes;
 	}
+
+	public Node getChildNode(Node baseNode, String name) {
+		List<Node> nodes = getChildNodes(baseNode, name);
+
+		if (nodes.size() > 0)
+			return nodes.get(0);
+
+		return null;
+	}
+
+	public List<Node> getChildNodes(Node baseNode, String name) {
+		ArrayList<Node> returnNodes = new ArrayList<Node>();
+
+		if (baseNode.hasChildNodes()) {
+			NodeList nList = baseNode.getChildNodes();
+
+			for (int i = 0; i < nList.getLength(); ++i) {
+				Node n = nList.item(i);
+
+				if (n.getNodeName().equalsIgnoreCase(name))
+					returnNodes.add(n);
+			}
+		}
+
+		return returnNodes;
+	}
 }

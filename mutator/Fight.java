@@ -17,11 +17,12 @@ import combatlogparser.mutator.*;
 import combatlogparser.mutator.mobs.*;
 import combatlogparser.mutator.helpers.*;
 import org.w3c.dom.Node;
+import org.w3c.dom.NamedNodeMap;
 
 public class Fight {
 	private ArrayList<BaseEvent> events;
 	private Map<String, String> actors;
-	private boolean isBoss;
+	private Boolean isBoss = null;
 	private String fightInstance;
 	private String fightName;
 
@@ -131,6 +132,54 @@ public class Fight {
 		ArrayList<BossInfo> bossInfoList = new ArrayList<BossInfo>();
 		XmlInfoParser xip = new XmlInfoParser("EN");
 		List<Node> bossNodes = xip.getChildNodes("boss");
+
+		for (Node bn : bossNodes) {
+			if (bn != null) {
+				NamedNodeMap attrs = bn.getAttributes();
+				Node encounterNode = attrs.getNamedItem("encounter");
+				Node instanceNode = attrs.getNamedItem("instance");
+				Node maxIdleTimeNode = attrs.getNamedItem("maxidletime");
+				BossInfo boss = new BossInfo(encounterNode.getTextContent(), instanceNode.getTextContent());
+				if (maxIdleTimeNode != null)
+					boss.setMaxIdleTime(Double.parseDouble(maxIdleTimeNode.getTextContent()));
+
+				List<Node> mobNodes = xip.getChildNodes(bn, "mob");
+
+				for (Node mn : mobNodes) {
+					attrs = mn.getAttributes();
+					Node nameNode = attrs.getNamedItem("name");
+					Node idNode = attrs.getNamedItem("id");
+					Node isBossNode = attrs.getNamedItem("boss");
+					boolean isNPCBoss = false;
+
+					if (isBossNode != null) {
+						if ("true".equalsIgnoreCase(isBossNode.getTextContent()))
+							isNPCBoss = true;
+					}
+
+					boss.addMob(new NPCInfo(nameNode.getTextContent(), Integer.valueOf(idNode.getTextContent()), isNPCBoss));
+				}
+
+				bossInfoList.add(boss);
+			}
+		}
+		
+		setIsBoss(false);
+
+		for (String key : this.actors.keySet()) {
+			String actorName = this.actors.get(key);
+			if (!getIsBoss()) {
+				for (BossInfo bi : bossInfoList) {
+					ArrayList<NPCInfo> mobs = new ArrayList<NPCInfo>(bi.getMobs());
+
+					for (NPCInfo npc : mobs) {
+						setIsBoss(npc.getName().equalsIgnoreCase(actorName));
+					}
+				}
+			}
+			else
+				break;
+		}
 	}
 
     public void setIsBoss(boolean isBoss) {
@@ -138,6 +187,9 @@ public class Fight {
     }
 
     public boolean getIsBoss() {
+    	if (this.isBoss == null)
+    		checkForBoss();
+
         return this.isBoss;
     }
 
