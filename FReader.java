@@ -35,7 +35,7 @@ public class FReader {
 		a.addEvents(bee);
 		System.exit(1);
 	} catch (Exception e) { e.printStackTrace(); }*/
-		File testerLogFile = new File("W:\\Logs\\WoWCombatLog_2.txt");
+		File testerLogFile = new File("W:\\Logs\\WoWCombatLog_4.txt");
 		//File def = new File("report.dat");
 		createClassHashMap();
 		long sT = System.currentTimeMillis();

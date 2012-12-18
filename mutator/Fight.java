@@ -25,6 +25,7 @@ public class Fight {
 	private Boolean isBoss = null;
 	private String fightInstance;
 	private String fightName;
+	private BossInfo bossFight;
 
 	public Fight(ArrayList<BaseEvent> events) {
 		this.events = events;
@@ -129,6 +130,8 @@ public class Fight {
 	}
 
 	public void checkForBoss() {
+		mapActors();
+
 		ArrayList<BossInfo> bossInfoList = new ArrayList<BossInfo>();
 		XmlInfoParser xip = new XmlInfoParser("EN");
 		List<Node> bossNodes = xip.getChildNodes("boss");
@@ -175,10 +178,21 @@ public class Fight {
 					for (NPCInfo npc : mobs) {
 						setIsBoss(npc.getName().equalsIgnoreCase(actorName));
 					}
+
+					if (getIsBoss()) {
+						setFightInstance(bi.getEncounterLocation());
+						setFightName(bi.getEncounterName());
+						break;
+					}
 				}
 			}
 			else
 				break;
+		}
+
+		if (!getIsBoss()) {
+			setFightInstance("Trash");
+			setFightName("Trash");
 		}
 	}
 
@@ -215,6 +229,7 @@ public class Fight {
 		char tab = '\t';
 		String s = "";
 
+		s += getFightName() + " - " + getFightInstance() + newLine;
 		s += tab + "Duration: " + getFightDuration() + newLine;
 		s += tab + "Melee Damage: " + getTotalMeleeDamage() + newLine;
 		s += tab + "Spell Damage: " + getTotalSpellDamage() + newLine;
