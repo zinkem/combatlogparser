@@ -50,4 +50,18 @@ public class BossInfo {
     public List<NPCInfo> getMobs() {
         return this.mobs;
     }
+
+    @Override
+    public String toString() {
+        char newLine = '\n';
+        char tab = '\t';
+        String s = "";
+
+        s += getEncounterName() + " - " + getEncounterLocation() + newLine;
+        
+        for (NPCInfo npc : mobs)
+            s += tab + npc.toString();
+
+        return s;
+    }
 }

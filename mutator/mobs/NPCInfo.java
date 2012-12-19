@@ -40,4 +40,15 @@ public class NPCInfo {
     public boolean getIsBoss() {
         return this.isBoss;
     }
+
+    @Override
+    public String toString() {
+        char newLine = '\n';
+        char tab = '\t';
+        String s = "";
+
+        s += getName() + " - " + getId() + " - " + getIsBoss() + newLine;
+
+        return s;
+    }
 }

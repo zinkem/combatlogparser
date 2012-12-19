@@ -152,7 +152,7 @@ public class Fight {
 					attrs = mn.getAttributes();
 					Node nameNode = attrs.getNamedItem("name");
 					Node idNode = attrs.getNamedItem("id");
-					Node isBossNode = attrs.getNamedItem("boss");
+					Node isBossNode = attrs.getNamedItem("isBoss");
 					boolean isNPCBoss = false;
 
 					if (isBossNode != null) {
@@ -171,19 +171,23 @@ public class Fight {
 
 		for (String key : this.actors.keySet()) {
 			String actorName = this.actors.get(key);
+			
 			if (!getIsBoss()) {
 				for (BossInfo bi : bossInfoList) {
 					ArrayList<NPCInfo> mobs = new ArrayList<NPCInfo>(bi.getMobs());
 
 					for (NPCInfo npc : mobs) {
+						if (getIsBoss()) {
+							setFightInstance(bi.getEncounterLocation());
+							setFightName(bi.getEncounterName());
+							break;
+						}
+
 						setIsBoss(npc.getName().equalsIgnoreCase(actorName));
 					}
 
-					if (getIsBoss()) {
-						setFightInstance(bi.getEncounterLocation());
-						setFightName(bi.getEncounterName());
+					if (getIsBoss())
 						break;
-					}
 				}
 			}
 			else

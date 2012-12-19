@@ -14,7 +14,11 @@ import combatlogparser.events.spell.aura.*;
 import combatlogparser.events.spell.cast.*;
 import combatlogparser.events.spell.heal.*;
 import combatlogparser.events.spell.periodic.*;
-import combatlogparser.mutator.Events;
+import combatlogparser.mutator.*;
+import combatlogparser.mutator.mobs.*;
+import combatlogparser.mutator.helpers.*;
+import org.w3c.dom.Node;
+import org.w3c.dom.NamedNodeMap;
 //import org.json.simple.*;
 
 public class FReader {
@@ -40,7 +44,7 @@ public class FReader {
 		createClassHashMap();
 		long sT = System.currentTimeMillis();
 		int lines = 0;
-		Map<String, Integer> freq = new HashMap<String, Integer>();
+		//Map<String, Integer> freq = new HashMap<String, Integer>();
 		Events events = new Events();
 		try {		
 			/*if (!def.exists())
@@ -60,9 +64,9 @@ public class FReader {
 						if (be.parse(lp.getTimeDate(), lp.getValues()) >= 1) {
 							//System.out.println(be.toString());
 							//out.writeBytes(s);
-							String[] ss = lp.getValues();
+							/*String[] ss = lp.getValues();
 							int count = freq.containsKey(ss[0]) ? freq.get(ss[0]) : 0;
-							freq.put(ss[0], count + 1);
+							freq.put(ss[0], count + 1);*/
 
 							events.addEvent(lp.getTimeDate(), be, lines);
 						}
@@ -76,9 +80,9 @@ public class FReader {
 					}
 					++lines;
 
-					if ((lines % 1000) == 0) {
+					/*if ((lines % 1000) == 0) {
 						System.out.println((System.currentTimeMillis() - sT) + "ms " + lines + " lines");
-					}
+					}*/
 
 					/*if ((lines % 48000) == 0)
 						System.exit(1);*/
@@ -96,8 +100,8 @@ public class FReader {
 		}
 		long fT = (System.currentTimeMillis() - sT);
 		System.out.println(fT + "ms " + lines + " lines");
-		for (String key : freq.keySet())
-			System.out.println(key + " -> " + freq.get(key));
+		/*for (String key : freq.keySet())
+			System.out.println(key + " -> " + freq.get(key));*/
 	}
 
 	public static BufferedReader endOfFile(File f) {
