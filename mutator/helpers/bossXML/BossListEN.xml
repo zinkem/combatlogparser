@@ -35,5 +35,52 @@
 	</boss>
 
 	<!-- Heart of Fear -->
+	<boss encounter="Imperial Vizier Zor'lok" instance="Heart of Fear">
+		<mob name="Imperial Vizier Zor'lok" id="62980" isBoss="true"/>
+	</boss>
+	<boss encounter="Blade Lord Ta'yak" instance="Heart of Fear">
+		<mob name="Blade Lord Ta'yak" id="62543" isBoss="true"/>
+	</boss>
+	<boss encounter="Garalon" instance="Heart of Fear">
+		<mob name="Garalon" id="62164" isBoss="true"/>
+		<mob name="Garalon's Leg" id="63053" isBoss="true"/>
+	</boss>
+	<boss encounter="Wind Lord Mel'jarak" instance="Heart of Fear">
+		<mob name="Wind Lord Mel'jarak" id="62980" isBoss="true"/>
+		<mob name="Zar'thik Battle-Mender" id="62408"/>
+		<mob name="Sra'thik Amber-Trapper" id="62405"/>
+		<mob name="Kor'thik Elite Blademaster" id="62402"/>
+	</boss>
+	<boss encounter="Amber-Shaper Un'sok" instance="Heart of Fear">
+		<mob name="Amber-Shaper Un'sok" id="62511" isBoss="true"/>
+		<mob name="Amber Monstrosity" id="62711"/>
+	</boss>
+	<boss encounter="Grand Empress Shek'zeer" instance="Heart of Fear">
+		<mob name="Grand Empress Shek'zeer" id="62837" isBoss="true"/>
+		<mob name="Set'thik Windblade" id="64453"/>
+		<mob name="Kor'thik Reaver" id="63591"/>
+	</boss>
+
 	<!-- Terrace of Endless Springs -->
+	<boss encounter="Protectors of the Endless" instance="Terrace of Endless Spring">
+		<mob name="Protector Kaolan" id="60583" isBoss="true"/>
+		<mob name="Elder Asani" id="60586" isBoss="true"/>
+		<mob name="Elder Regail" id="60585" isBoss="true"/>
+	</boss>
+	<boss encounter="Tsulong" instance="Terrace of Endless Spring">
+		<mob name="Tsulong" id="62442" isBoss="true"/>
+		<mob name="Embodied Terror" id="62969"/>
+		<mob name="Unstable Sha" id="62919"/>
+	</boss>
+	<boss encounter="Lei Shi" instance="Terrace of Endless Spring">
+		<mob name="Lei Shi" id="62983" isBoss="true"/>
+		<mob name="Animated Protector" id="62995"/>
+	</boss>
+	<boss encounter="Sha of Fear" instance="Terrace of Endless Spring">
+		<mob name="Sha of Fear" id="60999" isBoss="true"/>
+		<mob name="Terror Spawn" id="61034"/>
+		<mob name="Cheng Kang" id="61042"/>
+		<mob name="Yang Guoshi" id="61038"/>
+		<mob name="Jinlun Kun" id="61046"/>
+	</boss>
 </root>
