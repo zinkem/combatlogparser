@@ -169,9 +169,28 @@ public class Fight {
 		
 		setIsBoss(false);
 
+		try {
+			File f = new File("wtf.txt");
+
+			if (!f.exists())
+				f.createNewFile();
+
+			BufferedWriter bw = new BufferedWriter(new FileWriter(f.getAbsoluteFile()));
+
+			for (String key : this.actors.keySet())
+				bw.write(this.actors.get(key) + "\n");
+
+			bw.write("\n");
+			bw.write("\n");
+			bw.write("\n");
+			bw.write("\n");
+			bw.write("\n");
+			bw.close();
+		} catch (Exception e) {}
+
 		for (String key : this.actors.keySet()) {
 			String actorName = this.actors.get(key);
-			
+
 			if (!getIsBoss()) {
 				for (BossInfo bi : bossInfoList) {
 					ArrayList<NPCInfo> mobs = new ArrayList<NPCInfo>(bi.getMobs());
@@ -183,7 +202,9 @@ public class Fight {
 							break;
 						}
 
-						setIsBoss(npc.getName().equalsIgnoreCase(actorName));
+						setIsBoss(npc.getName().equalsIgnoreCase(actorName) &&
+									npc.getIsBoss() &&
+									(Integer.parseInt(key.substring(6,10), 16) == npc.getId()));
 					}
 
 					if (getIsBoss())
