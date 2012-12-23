@@ -102,6 +102,29 @@ public class Fight {
 		return outEvents;
 	}
 
+	public long getTotalSpellHeal() {
+		long healing = 0;
+		List<HealEvent> she = getSpellHealEvents();
+
+		for (HealEvent he : she) {
+			if (he instanceof HealEvent)
+				healing += he.getAmount();
+		}
+
+		return healing;
+	}
+
+	public List<HealEvent> getSpellHealEvents() {
+		List<HealEvent> outEvents = new ArrayList<HealEvent>();
+
+		for (BaseEvent be : this.events) {
+			if (be instanceof HealEvent)
+				outEvents.add((HealEvent)be);
+		}
+
+		return outEvents;
+	}
+
 	private long unixTimeDate(String timeDate) {
 		//12/1 20:48:28.306
 		Date d = null;
@@ -168,25 +191,6 @@ public class Fight {
 		}
 		
 		setIsBoss(false);
-
-		try {
-			File f = new File("wtf.txt");
-
-			if (!f.exists())
-				f.createNewFile();
-
-			BufferedWriter bw = new BufferedWriter(new FileWriter(f.getAbsoluteFile()));
-
-			for (String key : this.actors.keySet())
-				bw.write(this.actors.get(key) + "\n");
-
-			bw.write("\n");
-			bw.write("\n");
-			bw.write("\n");
-			bw.write("\n");
-			bw.write("\n");
-			bw.close();
-		} catch (Exception e) {}
 
 		for (String key : this.actors.keySet()) {
 			String actorName = this.actors.get(key);
