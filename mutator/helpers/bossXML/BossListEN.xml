@@ -72,7 +72,7 @@
 		<mob name="Embodied Terror" id="62969"/>
 		<mob name="Unstable Sha" id="62919"/>
 	</boss>
-	<boss encounter="Lei Shi" instance="Terrace of Endless Spring">
+	<boss encounter="Lei Shi" instance="Terrace of Endless Spring" maxidletime="45">
 		<mob name="Lei Shi" id="62983" isBoss="true"/>
 		<mob name="Animated Protector" id="62995"/>
 	</boss>
