@@ -15,7 +15,13 @@ public class Log {
 	static public final int LEVEL_DEBUG = 2;
 	static public final int LEVEL_TRACE = 1;
 
+	static public final int OUTPUT_LEVEL_NONE = 0;
+	static public final int OUTPUT_LEVEL_ONLINE = 1;
+	static public final int OUTPUT_LEVEL_FILE = 2;
+	static public final int OUTPUT_LEVEL_STDOUT = 4;
+
 	static private int level = LEVEL_INFO;
+	static private int outputLevel = OUTPUT_LEVEL_STDOUT;
 
 	static public boolean ERROR = level <= LEVEL_ERROR;
 	static public boolean WARN = level <= LEVEL_WARN;
@@ -23,8 +29,22 @@ public class Log {
 	static public boolean DEBUG = level <= LEVEL_DEBUG;
 	static public boolean TRACE = level <= LEVEL_TRACE;
 
-	static public void set(int level) {
+	static public void setLevel(int level) {
 		this.level = level;
+		ERROR = level <= LEVEL_ERROR;
+		WARN = level <= LEVEL_WARN;
+		INFO = level <= LEVEL_INFO;
+		DEBUG = level <= LEVEL_DEBUG;
+		TRACE = level <= LEVEL_TRACE;
+	}
+
+	static public void setOutput(int output) {
+		this.outputLevel = output;
+	}
+
+	static public void set(int level, int output) {
+		this.level = level;
+		this.outputLevel = output;
 		ERROR = level <= LEVEL_ERROR;
 		WARN = level <= LEVEL_WARN;
 		INFO = level <= LEVEL_INFO;
@@ -130,5 +150,45 @@ public class Log {
 
 		builder.append(" ");
 		builder.append(msg);
+	}
+
+	static private void print(String msg) {
+		switch (this.outputLevel) {
+			case 7:
+				printSTDOUT(msg);
+				printFile(msg);
+				printOnline(msg);
+				break;
+			case 6:
+				printSTDOUT(msg);
+				printFile(msg);
+				break;
+			case 5:
+				printSTDOUT(msg);
+				printOnline(msg);
+				break;
+			case 3:
+				printFile(msg);
+				printOnline(msg);
+				break;
+			case 2:
+				printFile(msg);
+				break;
+			case 1:
+				printOnline(msg);
+				break;
+		}
+	}
+
+	static private void printSTDOUT(String msg) {
+		System.out.println(msg);
+	}
+
+	static private void printFile(String msg) {
+		// Add file output
+	}
+
+	static private void printOnline(String msg) {
+		// Add online output
 	}
 }
